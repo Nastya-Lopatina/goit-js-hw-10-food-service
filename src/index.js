@@ -20,19 +20,15 @@ const Theme = {
 };
   
 const themeSwitcher = document.getElementById('theme-switch-toggle');
-const body = document.querySelector('body');
+const body = document.body('body');
 
 themeSwitcher.addEventListener('change', onChangeTheme )
 
-if (localStorage.getItem('theme') === null) {
-    localStorage.setItem('theme', Theme.LIGHT);
-}
+const theme = localStorage.getItem('theme') || Theme.LIGHT
 
-body.classList = localStorage.getItem('theme');
+body.className = theme;
 
-if (localStorage.getItem('theme') === Theme.DARK) {
-    themeSwitcher.checked = true;
-}
+themeSwitcher.checked = theme === Theme.DARK
 
 
 function onChangeTheme() {
@@ -43,9 +39,5 @@ function onChangeTheme() {
         return;
     }
 
-    else {
-        body.classList.add("light-theme");
-        body.classList.remove("dark-theme");
-        localStorage.setItem('theme', Theme.LIGHT);
-    }
+   
 }
